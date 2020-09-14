@@ -1,0 +1,38 @@
+h2.text-center = @chat.name
+
+.row
+  .col-12.col-md-3 = render 'chats'
+
+  .col
+    .chat data-channel-subscribe="chat" data-chat-id="#{@chat.id}"
+      - @chat_messages.each do |chat_message|
+        .chat-message-container
+          .row
+            .col-auto.text-center = chat_message.user.user_name
+            .col
+              .message-content
+                p.mb-1
+                  = chat_message.message
+                .text-right
+                  small = chat_message.created_at
+
+    = simple_form_for @chat_message, remote: true do |f|
+      .input-group.mb-3
+        = f.input :message, as: :string,
+                            wrapper: false,
+                            label: false,
+                            input_html: { class: 'chat-input' }
+        .input-group-append
+          = f.submit "Send", class: 'btn btn-primary chat-input'
+      = f.input :chat_id, as: :hidden
+
+.d-none data-role="message-template"
+  .chat-message-container
+    .row
+      .col-auto.text-center
+        span class="user-name" data-role="user-name">
+      .col
+        .message-content
+          p.mb-1 data-role="message-text"
+          .text-right
+            small data-role="message-date"
