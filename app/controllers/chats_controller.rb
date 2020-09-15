@@ -2,7 +2,6 @@ class ChatsController < ApplicationController
   before_action :_get_chats, only: [:index, :show, :edit, :update]
 
   def index
-    # @chats = Chat.all
   end
 
   def new
@@ -21,9 +20,12 @@ class ChatsController < ApplicationController
   end
 
   def edit
+    return redirect_to chats_path unless @chat
   end
 
   def update
+    return redirect_to chats_path unless @chat
+
     if @chat.update_attributes(permitted_parameters)
       flash[:success] = "Chat #{@chat.name} was updated successfully"
       redirect_to chat_path(@chat)
@@ -33,6 +35,8 @@ class ChatsController < ApplicationController
   end
 
   def show
+    return redirect_to chats_path unless @chat
+
     @chat_message = ChatMessage.new(chat: @chat)
     @chat_messages = @chat.chat_messages.includes(:user)
   end
