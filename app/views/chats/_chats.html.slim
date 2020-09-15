@@ -5,6 +5,9 @@
 - if @chats.present?
   nav.nav.flex-column
     - @chats.each do |chat|
-      = link_to chat.name, chat_path(chat), class: "nav-link chat-nav-link"
+      div.chat-block
+        = link_to chat.name, chat_path(chat), class: "nav-link chat-nav-link"
+        = link_to edit_chat_path(chat), title: "Edit chat name", class: "edit-chat" do
+          i.fa.fa-edit
 - else
   .text-muted The are no chats

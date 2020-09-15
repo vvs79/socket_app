@@ -1,5 +1,5 @@
 class ChatsController < ApplicationController
-  before_action :_get_chats, only: [:index, :show]
+  before_action :_get_chats, only: [:index, :show, :edit, :update]
 
   def index
     # @chats = Chat.all

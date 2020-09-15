@@ -1,4 +1,5 @@
 @import "bootstrap";
+@import "font-awesome";
 
 .chat-nav-link {
   border: 1px solid lighten($primary, 40%);
@@ -35,5 +36,21 @@
 
   & + .chat-message-container {
     margin-top: 10px;
+  }
+}
+
+.chat-block {
+  position: relative;
+  a.edit-chat {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+  }
+}
+
+.nav-link {
+  i.fa-user-circle {
+    padding-right: 5px;
+    font-size: 23px;
   }
 }
