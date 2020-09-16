@@ -4,7 +4,5 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  # has_many :chat_messages
-
   validates :user_name, uniqueness: true, presence: true
 end
